@@ -117,6 +117,8 @@ jobs:
         set -eu
         rm -rf prefix_cmake
         cmake --install build-cmake/ --config Release --verbose
+        cat $(pwd)/prefix_cmake/lib/cmake/SDL2_ttf/SDL2_ttf-shared-targets-release.cmake
+        cat $(pwd)/prefix_cmake/lib/pkgconfig/SDL2_ttf.pc
         echo "SDL2_ttf_DIR=$(pwd)/prefix_cmake" >> $GITHUB_ENV
         ( cd prefix_cmake; find . ) | LC_ALL=C sort -u
     - name: Test using showfont (CMake)
@@ -157,6 +159,8 @@ jobs:
         parallel="$(getconf _NPROCESSORS_ONLN)"
         rm -rf prefix_autotools
         make -j"${parallel}" -C build-autotools install V=1
+        cat $(pwd)/prefix_autotools/lib/cmake/SDL2_ttf/sdl2_ttf-config.cmake
+        cat $(pwd)/prefix_autotools/lib/pkgconfig/SDL2_ttf.pc
         echo "SDL2_ttf_DIR=$(pwd)/prefix_autotools" >> $GITHUB_ENV
         ( cd prefix_autotools; find . ) | LC_ALL=C sort -u
     - name: Distcheck (Autotools)
