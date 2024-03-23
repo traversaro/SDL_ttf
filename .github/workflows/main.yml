@@ -117,6 +117,7 @@ jobs:
         set -eu
         rm -rf prefix_cmake
         cmake --install build-cmake/ --config Release --verbose
+        cat $(pwd)/prefix_cmake/lib/cmake/SDL2_ttf/SDL2_ttf-shared-targets-release.cmake
         echo "SDL2_ttf_DIR=$(pwd)/prefix_cmake" >> $GITHUB_ENV
         ( cd prefix_cmake; find . ) | LC_ALL=C sort -u
     - name: Test using showfont (CMake)
