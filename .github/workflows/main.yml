@@ -106,6 +106,7 @@ jobs:
         cmake --install build-cmake/ --config Release --verbose
         echo "SDL3_ttf_ROOT=$(pwd)/prefix_cmake" >> $GITHUB_ENV
         ( cd prefix_cmake; find . ) | LC_ALL=C sort -u
+        cat ${SDL3_ttf_ROOT}/lib/cmake/SDL3_ttf/SDL3_ttf-shared-targets-release.cmake
     - name: Test using showfont
       if: ${{ runner.os == 'Linux' }}
       run: |
